@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 #curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/kind-sudo-cluster-with-nginx.sh | bash
 set -euo pipefail
+
 #use sudo to listen on ports 80,443 and allow privileged containers
-use_sudo=true #var_use_sudo
+use_sudo=false
+s=""
 if $use_sudo ; then
-  sudo -i
+  #sudo -i
+  s="sudo -H"
+fi
+
+if $use_sudo ; then
   port_https=443
   port_http=80
   else
