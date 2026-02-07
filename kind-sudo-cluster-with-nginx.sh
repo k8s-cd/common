@@ -50,5 +50,5 @@ nodes:
     listenAddress: "127.0.0.1"
 EOF
 kubectl $kubeconfig apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-kubectl $kubeconfig wait --timeout=120s --namespace ingress-nginx  --for=condition=available --timeout=240s deployment/ingress-nginx-controller
+kubectl $kubeconfig wait --timeout=5m --namespace ingress-nginx  --for=condition=available --timeout=240s deployment/ingress-nginx-controller
 
