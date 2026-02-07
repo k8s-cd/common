@@ -10,6 +10,7 @@ use_sudo=true
 if $use_sudo ; then
   sudo -i
 fi
+
 cluster_name="${1:-${KIND_CLUSTER:-kind-nginx}}"
 export KUBECONFIG="$HOME/.kube/$cluster_name"
 k="kubectl"
