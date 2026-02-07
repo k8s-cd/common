@@ -11,4 +11,4 @@ ns=argocd-core
 
 $k create ns $ns
 $k -n $ns create -f https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/manifests/core-install.yaml
-$k -n $ns wait --for=condition=Available deployment/argocd-applicationset-controller deployment/argocd-redis deployment/argocd-repo-server --timeout=120s
+$k -n $ns wait --for=condition=Available deployment/argocd-applicationset-controller deployment/argocd-redis deployment/argocd-repo-server --timeout=240s
