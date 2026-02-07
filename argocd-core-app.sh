@@ -5,7 +5,7 @@ use_sudo=false
 s=""
 if $use_sudo ; then
   #sudo -i
-  s="sudo"
+  s="sudo -H"
 fi
 
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
