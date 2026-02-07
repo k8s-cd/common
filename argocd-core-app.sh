@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/argocd-core-app.sh | bash
 set -euo pipefail
-use_sudo=true
+#use_sudo=true
 sudo=""
 if $use_sudo ; then
   #sudo -i
