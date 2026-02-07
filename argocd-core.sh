@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+#########################################################
+#  ARGOCD-CORE NOT WORK
+#  https://github.com/argoproj/argo-cd/issues/12903
+#########################################################
+
+
 #curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/argocd-core.sh | bash
 set -euo pipefail
 use_sudo=true 
