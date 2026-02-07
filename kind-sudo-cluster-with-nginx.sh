@@ -28,7 +28,7 @@ kind delete cluster --name $cluster_name || true
 #create a kind cluster with ingress-nginx controller installed and configured.
 #https://kind.sigs.k8s.io/docs/user/ingress/
 mkdir -p ~/.kube
-cat <<EOF | kind create cluster --name $cluster_name --kubeconfig ~/.kube/$cluster_name --config=-
+cat <<EOF | kind create cluster --name $cluster_name $kubeconfig --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
