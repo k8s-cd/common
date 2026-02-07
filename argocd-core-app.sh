@@ -17,7 +17,7 @@ cluster_name="${1:-${KIND_CLUSTER:-$kind-nginx}}"
 k="kubectl --kubeconfig $HOME/.kube/$cluster_name -n $namespace "
 
 
-$k  -f - <<EOF
+$k apply -f - <<EOF
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
