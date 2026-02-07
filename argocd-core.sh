@@ -6,9 +6,9 @@ if $use_sudo ; then
   sudo -i
 fi
 cluster_name="${1:-${KIND_CLUSTER:-kind-nginx}}"
-namespace=argocd-core
-kubeconfig="--kubeconfig $HOME/.kube/$cluster_name"
+k="kubectl --kubeconfig $HOME/.kube/$cluster_name"
+ns=argocd-core
 
-kubectl $kubeconfig create ns $namespace
-kubectl $kubeconfig -n $namespace create -f https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/manifests/core-install.yaml
-kubectl $kubeconfig -n $namespace wait --for=condition=Available deployment/argocd-applicationset-controller deployment/argocd-redis deployment/argocd-repo-server --timeout=120s
+$k create ns $ns
+$k -n $ns create -f https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/manifests/core-install.yaml
+$k -n $ns wait --for=condition=Available deployment/argocd-applicationset-controller deployment/argocd-redis deployment/argocd-repo-server --timeout=120s
