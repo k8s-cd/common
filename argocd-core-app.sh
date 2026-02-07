@@ -2,7 +2,7 @@
 #curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/argocd-core-app.sh | bash
 set -euo pipefail
 use_sudo=false
-sudo=""
+s=""
 if $use_sudo ; then
   #sudo -i
   s="sudo"
