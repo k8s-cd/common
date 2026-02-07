@@ -16,7 +16,7 @@ key_file="$HOME/.ssh/id_$cluster_name"
 kubeconfig="--kubeconfig $HOME/.kube/$cluster_name"
 
 if kind get clusters | grep -q "^${cluster_name}$"; then
-  read -p "${cluster_name} exist, delete it? (y/n) " answer
+  read -p "${cluster_name} already exists. Delete it? (y/n) " answer
   [ "$answer" = "n" ] && exit 1
 fi
 if compgen -G "$key_file*" > /dev/null; then
