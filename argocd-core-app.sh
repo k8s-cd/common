@@ -9,10 +9,12 @@ fi
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
 namespace='argocd-core-like'
 cluster_name='kind-nginx'
+path='0-core-apps'
 
-repoURL="${1:-${REPO_URL:-$repoURL}}"
-cluster_name="${2:-${KIND_CLUSTER:-$cluster_name}}"
-namespace="${3:-${NAMESPACE:-$namespace}}"
+path="${1:-${REPO_PATH:-$path}}"
+repoURL="${2:-${REPO_URL:-$repoURL}}"
+cluster_name="${3:-${KIND_CLUSTER:-$cluster_name}}"
+namespace="${4:-${NAMESPACE:-$namespace}}"
 
 k="kubectl --kubeconfig $HOME/.kube/$cluster_name -n $namespace "
 
@@ -32,7 +34,7 @@ spec:
   source:
     repoURL: "$repoURL" 
     targetRevision: HEAD
-    path: 0-core-apps
+    path: "$path"
 
   destination:
     server: 'https://kubernetes.default.svc'
