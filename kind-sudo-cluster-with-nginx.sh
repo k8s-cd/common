@@ -13,6 +13,8 @@ if $use_sudo ; then
 fi
 cluster_name='kind-nginx' #var_cluster_name
 key_file="$HOME/.ssh/id_$cluster_name"
+kubeconfig="--kubeconfig $HOME/.kube/$cluster_name"
+
 if compgen -G "$key_file*" > /dev/null; then
   echo "existing ssh keys"
 else
@@ -43,4 +45,6 @@ nodes:
     protocol: TCP
     listenAddress: "127.0.0.1"
 EOF
-kubectl --kubeconfig ~/.kube/$cluster_name apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+kubectl $kubeconfig apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+kubectl $kubeconfig wait --timeout 120 --namespace ingress-nginx --for=condition=Ready pod -l app.kubernetes.io/component=controller
+
