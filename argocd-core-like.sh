@@ -11,26 +11,13 @@ if $use_sudo ; then
   sudo -i
 fi
 cluster_name="${1:-${KIND_CLUSTER:-kind-nginx}}"
-k="kubectl --kubeconfig $HOME/.kube/$cluster_name"
+kubeconfig="--kubeconfig $HOME/.kube/$cluster_name"
+k="kubectl --kubeconfig $kubeconfig"
 ns=argocd-core
 
 $k create ns $ns
+helm repo add argo https://argoproj.github.io/argo-helm
+helm --namespace $ns $kubeconfig install argocd-core  argo/argo-cd --set notifications.enabled=false --set dex.enabled=false --set redis.enabled=true --set server.replicas=1 --set configs.cm.admin.enabled=false --set applicationSet.replicas=0 --create-namespace
+
 k="$k -n $ns "
-$k create -f https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/manifests/core-install.yaml
 $k wait --for=condition=Available deployment/argocd-applicationset-controller deployment/argocd-redis deployment/argocd-repo-server --timeout=5m
-$k  apply -f - <<EOF
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: default
-  namespace: $namespace
-spec:
-  sourceRepos:
-    - '*'
-  destinations:
-    - namespace: '*'
-      server: '*'
-  clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
-EOF
