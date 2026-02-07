@@ -12,7 +12,7 @@ cluster_name='kind-nginx'
 
 repoURL="${1:-${REPO_URL:-$repoURL}}"
 namespace="${1:-${NAMESPACE:-$namespace}}"
-cluster_name="${1:-${KIND_CLUSTER:-$kind-nginx}}"
+cluster_name="${1:-${KIND_CLUSTER:-$cluster_name}}"
 
 k="kubectl --kubeconfig $HOME/.kube/$cluster_name -n $namespace "
 
