@@ -7,7 +7,7 @@ if $use_sudo ; then
 fi
 
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
-namespace='argocd-core'
+namespace='argocd-core-like'
 cluster_name='kind-nginx'
 
 repoURL="${1:-${REPO_URL:-$repoURL}}"
