@@ -13,7 +13,7 @@ $k  -f - <<EOF
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: 0-core-app
+  name: 0-core-apps
   namespace: "$namespace"
 spec:
   ignoreDifferences:
@@ -25,7 +25,7 @@ spec:
   source:
     repoURL: "$repoURL" 
     targetRevision: HEAD
-    path: infra
+    path: 0-core-apps
 
   destination:
     server: 'https://kubernetes.default.svc'
