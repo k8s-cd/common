@@ -14,9 +14,7 @@ repoURL="${1:-${REPO_URL:-$repoURL}}"
 cluster_name="${2:-${KIND_CLUSTER:-$cluster_name}}"
 namespace="${3:-${NAMESPACE:-$namespace}}"
 
-
 k="kubectl --kubeconfig $HOME/.kube/$cluster_name -n $namespace "
-
 
 $k apply -f - <<EOF
 apiVersion: argoproj.io/v1alpha1
