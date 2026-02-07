@@ -11,7 +11,9 @@ if $use_sudo ; then
   port_https=4443
   port_http=8080
 fi
-cluster_name='kind-nginx' #var_cluster_name
+
+cluster_name='kind-nginx'
+cluster_name="${1:-${KIND_CLUSTER:-$cluster_name}}"
 key_file="$HOME/.ssh/id_$cluster_name"
 kubeconfig="--kubeconfig $HOME/.kube/$cluster_name"
 
