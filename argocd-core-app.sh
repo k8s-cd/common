@@ -18,6 +18,21 @@ k="kubectl --kubeconfig $HOME/.kube/$cluster_name -n $namespace "
 
 $k apply -f - <<EOF
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+  namespace: $namespace
+spec:
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+---
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: 0-core-apps
