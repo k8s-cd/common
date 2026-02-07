@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 #curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/argocd-core-app.sh | bash
 set -euo pipefail
-use_sudo=true 
+use_sudo=true
+sudo=""
 if $use_sudo ; then
-  sudo -i
+  #sudo -i
+  s="sudo"
 fi
 
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
@@ -16,7 +18,7 @@ repoURL="${2:-${REPO_URL:-$repoURL}}"
 cluster_name="${3:-${KIND_CLUSTER:-$cluster_name}}"
 namespace="${4:-${NAMESPACE:-$namespace}}"
 
-k="kubectl --kubeconfig $HOME/.kube/$cluster_name -n $namespace "
+k="$s kubectl --kubeconfig $HOME/.kube/$cluster_name -n $namespace "
 
 $k apply -f - <<EOF
 apiVersion: argoproj.io/v1alpha1
