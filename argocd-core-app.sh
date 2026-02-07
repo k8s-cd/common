@@ -1,3 +1,11 @@
+#!/usr/bin/env bash
+#curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/argocd-core-app.sh | bash
+set -euo pipefail
+use_sudo=true 
+if $use_sudo ; then
+  sudo -i
+fi
+
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
 namespace='argocd-core'
 cluster_name='kind-nginx'
