@@ -4,7 +4,7 @@ set -euo pipefail
 s=""
 
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
-namespace='argocd-core-like'
+namespace='argocd-infra'
 cluster_name='kind-nginx'
 path='kind/infra'
 

@@ -13,7 +13,7 @@ cluster_name="${1:-${KIND_CLUSTER:-$cluster_name}}"
 
 export KUBECONFIG="$HOME/.kube/$cluster_name"
 k="kubectl"
-ns=argocd-core-like
+ns=argocd-infra
 
 $k create ns $ns
 helm repo add argo https://argoproj.github.io/argo-helm
