@@ -6,20 +6,16 @@ set -euo pipefail
 use_sudo=false
 s=""
 if $use_sudo ; then
-  #sudo -i
   s="sudo -H"
 fi
 
-if $use_sudo ; then
-  port_https=443
-  port_http=80
-  else
-  port_https=4443
-  port_http=8080
-fi
 
+#use sudo to listen on ports 80,443 and allow privileged containers
+ports=[443,80]
+ports="${2:-${KIND_INGRESS_PORTS:-$ports}}"
 cluster_name='kind-nginx'
 cluster_name="${1:-${KIND_CLUSTER:-$cluster_name}}"
+
 key_file="$HOME/.ssh/id_$cluster_name"
 kubeconfig="--kubeconfig $HOME/.kube/$cluster_name"
 
@@ -49,11 +45,11 @@ nodes:
         node-labels: "ingress-ready=true"
   extraPortMappings:
   - containerPort: 80
-    hostPort: $port_http
+    hostPort: $ports[1]
     protocol: TCP
     listenAddress: "127.0.0.1"
   - containerPort: 443
-    hostPort: $port_https
+    hostPort: $ports[0]
     protocol: TCP
     listenAddress: "127.0.0.1"
 EOF
