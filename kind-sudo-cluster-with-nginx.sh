@@ -11,7 +11,7 @@ fi
 
 
 #use sudo to listen on ports 80,443 and allow privileged containers
-ports=[443,80]
+ports=(443 80)
 ports="${2:-${KIND_INGRESS_PORTS:-$ports}}"
 cluster_name='kind-nginx'
 cluster_name="${1:-${KIND_CLUSTER:-$cluster_name}}"
@@ -45,11 +45,11 @@ nodes:
         node-labels: "ingress-ready=true"
   extraPortMappings:
   - containerPort: 80
-    hostPort: $ports[1]
+    hostPort: ${ports[1]}
     protocol: TCP
     listenAddress: "127.0.0.1"
   - containerPort: 443
-    hostPort: $ports[0]
+    hostPort: ${ports[0]}
     protocol: TCP
     listenAddress: "127.0.0.1"
 EOF
