@@ -6,7 +6,7 @@ s=""
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
 namespace='argocd-core-like'
 cluster_name='kind-nginx'
-path='0-core-apps'
+path='kind/infra'
 
 path="${1:-${REPO_PATH:-$path}}"
 repoURL="${2:-${REPO_URL:-$repoURL}}"
