@@ -11,7 +11,9 @@ if $use_sudo ; then
   sudo -i
 fi
 
-cluster_name="${1:-${KIND_CLUSTER:-kind-nginx}}"
+cluster_name='kind-nginx'
+cluster_name="${1:-${KIND_CLUSTER:-$cluster_name}}"
+
 export KUBECONFIG="$HOME/.kube/$cluster_name"
 k="kubectl"
 ns=argocd-core-like
