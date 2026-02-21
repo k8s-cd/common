@@ -6,10 +6,7 @@
 
 #curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/argocd-core-like.sh | bash
 set -euo pipefail
-use_sudo=true 
-if $use_sudo ; then
-  sudo -i
-fi
+
 
 cluster_name='kind-nginx'
 cluster_name="${1:-${KIND_CLUSTER:-$cluster_name}}"
