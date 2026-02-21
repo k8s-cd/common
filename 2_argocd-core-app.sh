@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #curl -sSL https://raw.githubusercontent.com/k8s-cd/common/main/argocd-core-app.sh | bash
 set -euo pipefail
+s=""
 
 repoURL='https://github.com/k8s-cd/kind-framework-12.git'
 namespace='argocd-core-like'
