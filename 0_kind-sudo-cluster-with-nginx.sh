@@ -55,4 +55,4 @@ nodes:
 EOF
 kubectl $kubeconfig apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 kubectl $kubeconfig wait --timeout=5m --namespace ingress-nginx  --for=condition=available --timeout=240s deployment/ingress-nginx-controller
-
+echo "connect with kubectl $kubeconfig"
